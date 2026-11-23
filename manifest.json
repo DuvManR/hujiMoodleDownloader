@@ -1,0 +1,51 @@
+{
+    "manifest_version": 3,
+    "name": "HUJI Moodle Downloader",
+    "version": "2.0",
+    "description": "הורדה אוטומטית של קבצי קורס, תיקיות והקלטות מהמודל של האוניברסיטה העברית.",
+    "permissions": [
+        "downloads",
+        "activeTab",
+        "scripting"
+    ],
+    "host_permissions": [
+        "*://*.huji.ac.il/*",
+        "*://huji.cloud.panopto.eu/*",
+        "<all_urls>"
+    ],
+    "icons": {
+        "16": "icon.png",
+        "48": "icon.png",
+        "128": "icon.png"
+    },
+    "action": {
+        "default_title": "פתיחת חלון ההורדה למודל",
+        "default_icon": "icon.png"
+    },
+    "background": {
+        "service_worker": "background.js"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "*://moodle.huji.ac.il/*",
+                "*://*.moodle.huji.ac.il/*",
+                "*://moodle2.huji.ac.il/*",
+                "*://moodle2.cs.huji.ac.il/*"
+            ],
+            "js": [
+                "content.js"
+            ]
+        }
+    ],
+    "web_accessible_resources": [
+        {
+            "resources": [
+                "icon.png"
+            ],
+            "matches": [
+                "*://*.huji.ac.il/*"
+            ]
+        }
+    ]
+}
